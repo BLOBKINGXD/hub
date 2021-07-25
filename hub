@@ -1,0 +1,55 @@
+local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
+
+local MainUI = UILibrary.Load("NoobyHub")
+local FirstPage = MainUI.AddPage("Home")
+local SecondPage = MainUI.AddPage("Hubs")
+
+local FirstLabel = FirstPage.AddLabel("LocalPlayer")
+
+local FirstSlider = FirstPage.AddSlider("WalkSpeed", {Min = 16, Max = 500, Def = 16}, function(ws)
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = ws
+end)
+
+local FirstSlider = FirstPage.AddSlider("JumpPower", {Min = 16, Max = 500, Def = 16}, function(jp)
+   game.Players.LocalPlayer.Character.Humanoid.JumpPower = jp
+end)
+
+local FirstToggle = FirstPage.AddToggle("Infinite Jump", false, function(bool)
+	local Player = game:GetService("Players").LocalPlayer
+	local Mouse = Player:GetMouse()
+	Mouse.KeyDown:connect(function(k)
+		if _G.infinjump then
+			if k:byte() == 32 then
+				Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+				Humanoid:ChangeState("Jumping")
+				wait(0.1)
+				Humanoid:ChangeState("Seated")
+			end
+		end
+	end)
+
+	if bool == 	true then
+		_G.infinjump = true
+	end
+
+	if bool == false then
+		_G.infinjump = false
+	end
+end)
+
+local SecondLabel = FirstPage.AddLabel("Waypoints")
+
+
+local SecondButton = FirstPage.AddButton("Save Down Cords", function()
+	here = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+end)
+
+local SecondButton = FirstPage.AddButton("Go To Saved Cords", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(here)
+end)
+
+local FirstLabel = SecondPage.AddLabel("Fe Hubs")
+
+local FirstButton = SecondPage.AddButton("Linorix Hub", function()
+    loadstring(game:HttpGet(('https://pastebin.com/raw/KumP53dH'),true))()
+end)
